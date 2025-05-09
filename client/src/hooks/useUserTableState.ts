@@ -5,7 +5,7 @@ export type UserTableState = {
   popUp: boolean;
   isEditing: boolean;
   search: string;
-  sector: number | null | string;
+  sector: number | null ;
   estado: string | null;
 };
 

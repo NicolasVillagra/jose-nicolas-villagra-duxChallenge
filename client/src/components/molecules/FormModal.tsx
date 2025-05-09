@@ -1,10 +1,10 @@
-"use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { InputText } from "primereact/inputtext";
 import DropdownComponent from "../atoms/DropDown";
 import ButtonComponent from "../atoms/Button";
 import { classNames } from "primereact/utils";
 import { InputNumber } from "primereact/inputnumber";
+import { useUserForm } from "@/hooks/useUserForm";
 
 type UserFormProps = {
   onSubmit: (user: {
@@ -29,64 +29,30 @@ const sectores = [
 ];
 
 export default function FormModal({ onClose, onSubmit }: UserFormProps) {
-  const [id, setId] = useState<number | undefined>(undefined);
-  const [usuario, setUsuario] = useState("");
-  const [estado, setEstado] = useState("");
-  const [sector, setSector] = useState<number | undefined>(undefined);
-  const [isIdEditable, setIsIdEditable] = useState(true);
+  const {
+    id,
+    usuario,
+    estado,
+    sector,
+    isIdEditable,
+    errors,
+    setId,
+    setUsuario,
+    setEstado,
+    setSector,
+    handleSubmit,
+  } = useUserForm(onSubmit);
 
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-
-  useEffect(() => {
-    const userId = localStorage.getItem("selectedUserId");
-    if (userId) {
-      setId(Number(userId));
-      setIsIdEditable(false);
-    } else {
-      setIsIdEditable(true);
-    }
-  }, []);
-
-  const validate = () => {
-    const newErrors: { [key: string]: string } = {};
-    const numericId = Number(id);
-
-    if (!id || isNaN(numericId) || numericId <= 0)
-      newErrors.id = "ID inválido. Debe ser un número positivo.";
-    if (!usuario || usuario.trim().length < 3)
-      newErrors.usuario = "El nombre debe tener al menos 3 caracteres.";
-    if (!estado) newErrors.estado = "Debe seleccionar un estado.";
-    if (!sector) newErrors.sector = "Debe seleccionar un sector.";
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = () => {
-    const numericId = Number(id);
-    if (!validate()) return;
-
-    onSubmit({ id: numericId, usuario, estado, sector: sector! });
-    setId(0);
-    setUsuario("");
-    setEstado("");
-    setSector(undefined);
-    setErrors({});
-  };
   return (
     <div>
       <div className="flex flex-column gap-3 p-4">
         <span className="flex flex-column gap-2">
-          <label className="text-2xl" htmlFor="id">
-            ID
-          </label>
+          <label className="text-2xl" htmlFor="id">ID</label>
           <InputNumber
             id="id"
             value={id || 0}
             placeholder={
-              isIdEditable
-                ? "Ingrese el ID del usuario"
-                : "ID generado automáticamente"
+              isIdEditable ? "Ingrese el ID del usuario" : "ID generado automáticamente"
             }
             onChange={(e) => setId(e.value as number)}
             disabled={!isIdEditable}
@@ -98,24 +64,18 @@ export default function FormModal({ onClose, onSubmit }: UserFormProps) {
         </span>
 
         <span className="flex flex-column gap-2">
-          <label className="text-2xl" htmlFor="usuario">
-            Nombre de Usuario
-          </label>
+          <label className="text-2xl" htmlFor="usuario">Nombre de Usuario</label>
           <InputText
             id="usuario"
             value={usuario}
             onChange={(e) => setUsuario(e.target.value)}
             className={classNames({ "p-invalid": errors.usuario })}
           />
-          {errors.usuario && (
-            <small className="p-error">{errors.usuario}</small>
-          )}
+          {errors.usuario && <small className="p-error">{errors.usuario}</small>}
         </span>
 
         <span className="flex flex-column gap-2">
-          <label className="text-2xl" htmlFor="estado">
-            Estado:
-          </label>
+          <label className="text-2xl" htmlFor="estado">Estado:</label>
           <DropdownComponent
             id="estado"
             value={estado}
@@ -128,9 +88,7 @@ export default function FormModal({ onClose, onSubmit }: UserFormProps) {
         </span>
 
         <span className="flex flex-column gap-2">
-          <label className="text-2xl" htmlFor="sector">
-            Sector:
-          </label>
+          <label className="text-2xl" htmlFor="sector">Sector:</label>
           <DropdownComponent
             id="sector"
             value={sector}

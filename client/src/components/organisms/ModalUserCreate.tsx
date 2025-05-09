@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import HeaderModal from "../molecules/HeaderModal";
 import FormModal from "../molecules/FormModal";

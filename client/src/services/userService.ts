@@ -1,6 +1,7 @@
 const API_BASE = 'https://staging.duxsoftware.com.ar/api/personal';
 const SECTOR = 4000;
 
+
 export async function getUsers(page: number, limit: number) {
   try {
     const response = await fetch(`${API_BASE}?sector=${SECTOR}&_limit=${limit}&_page=${page}`);

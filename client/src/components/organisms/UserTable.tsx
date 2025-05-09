@@ -77,7 +77,7 @@ export default function UserTable({ users, totalRecord }: Props) {
         <UserFilters
           search={state.search}
           onSearchChange={(value) => dispatch({ type: "SET_SEARCH", payload: value })}
-          sector={state.sector !== null ? Number(state.sector) : null}
+          sector={state.sector}
           onSectorChange={(value) => dispatch({ type: "SET_SECTOR", payload: value })}
           estado={state.estado}
           onEstadoChange={(value) => dispatch({ type: "SET_ESTADO", payload: value })}

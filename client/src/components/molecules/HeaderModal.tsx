@@ -15,14 +15,14 @@ const HeaderModal = ({ onClose }: HeaderModalProps) => {
         <ButtonComponent
           label=""
           icon="pi pi-cog"
-          className=""
+          className="bg-blue-500 text-xs"
           onClick={onClose}
           severity="info"
         />
         <ButtonComponent
           label=""
           icon="pi pi-minus"
-          className=" text-xs"
+          className=" bg-blue-500 text-xs"
           onClick={() => onClose()}
           severity="info"
         />

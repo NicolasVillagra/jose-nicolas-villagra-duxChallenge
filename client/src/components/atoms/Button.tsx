@@ -14,7 +14,7 @@ interface ButtonProps {
         <Button
             label={label}
             icon={icon}
-            className={` p-button-rounded${className}`}
+            className={` p-button-rounded ${className}`}
             onClick={onClick}
             severity={severity} 
            

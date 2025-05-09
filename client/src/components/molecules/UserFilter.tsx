@@ -77,6 +77,17 @@ export default function UserFilters({
           severity="secondary"
         />
       </div>
+
+            <div>
+        <ButtonComponent
+          label=""
+          icon="pi pi-sliders-v"
+          className="p-button-secondary text-white"
+          onClick={handleClearFilters}
+          severity="secondary"
+        />
+      </div>
+
     </div>
   );
 }
