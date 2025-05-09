@@ -1,0 +1,8 @@
+.headerModal {
+background-color: var(--blue-500);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 6px;
+}

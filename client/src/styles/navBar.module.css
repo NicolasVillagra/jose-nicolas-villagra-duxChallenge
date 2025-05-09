@@ -1,0 +1,22 @@
+/* styles/NavBar.module.css */
+.customMenubar {
+    background-color: #1e40af;  /* Azul oscuro */
+    border: none;
+    color: white;
+  }
+  
+  .customMenubar .p-menubar-root,
+  .customMenubar .p-menubar {
+    background-color: inherit;
+  }
+  
+  .customMenubar .p-menuitem-link,
+  .customMenubar .p-menuitem-text,
+  .customMenubar .p-menuitem-icon {
+    color: white;
+  }
+  
+  .customMenubar .p-menuitem-link:hover {
+    background-color: #1e3a8a;  /* Hover */
+  }
+  
