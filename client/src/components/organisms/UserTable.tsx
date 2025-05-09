@@ -59,6 +59,7 @@ export default function UserTable({ users, totalRecord }: Props) {
     }
   };
 
+
   const sectorOptions = Array.from(
     new Set(users.map((u) => String(u.sector ?? "Otro")))
   ).map((s) => ({
@@ -69,6 +70,7 @@ export default function UserTable({ users, totalRecord }: Props) {
     label: e,
     value: e,
   }));
+
 
   return (
     <Suspense fallback={<div>Cargando usuarios...</div>}>

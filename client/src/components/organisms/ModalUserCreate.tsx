@@ -36,7 +36,9 @@ const ModalUserCreate = ({ onClose, state }: ModalUserCreateProps) => {
   return (
     <div>
       <HeaderModal onClose={onClose} />
-      <FormModal onClose={onClose} onSubmit={handleSubmit} />
+      <div className="p-2">
+              <FormModal onClose={onClose} onSubmit={handleSubmit} />
+      </div>
     </div>
   );
 };

@@ -20,7 +20,7 @@ export default function UserModal({
         zIndex: 1000,
       }}
     >
-      <div className="bg-white w-full h-38rem p-4 border-round shadow-4">
+      <div className="bg-white w-10 h-38rem border-round shadow-4">
         <ModalUserCreate state={isEditing} onClose={onClose} />
       </div>
     </div>
